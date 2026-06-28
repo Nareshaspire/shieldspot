@@ -1,0 +1,6 @@
+{
+  "name": "ShieldSpot",
+  "description": "Industrial AI Consulting, operational safety telemetry, and enterprise AI orchestration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
