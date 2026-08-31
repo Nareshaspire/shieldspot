@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
 import HomeSection from './components/HomeSection';
 import ServicesSection from './components/ServicesSection';
@@ -6,19 +7,15 @@ import CaseStudiesSection from './components/CaseStudiesSection';
 import InsightsSection from './components/InsightsSection';
 import AboutSection from './components/AboutSection';
 import ContactSection from './components/ContactSection';
-import { Tab } from './types';
 import { Shield, ArrowUp, X } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('home');
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [prefilledMessage, setPrefilledMessage] = useState('');
   const [activeModal, setActiveModal] = useState<'privacy' | 'terms' | null>(null);
 
-  // Smooth scroll to top when tab changes
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [activeTab]);
+  // Smooth scroll to top on path change is usually handled by a wrapper component, 
+  // but we can rely on standard browser behavior or add a small ScrollToTop component later.
 
   // Monitor scroll height to show back to top button
   useEffect(() => {
@@ -33,54 +30,39 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const renderActiveSection = () => {
-    switch (activeTab) {
-      case 'home':
-        return <HomeSection setActiveTab={setActiveTab} />;
-      case 'services':
-        return <ServicesSection />;
-      case 'case-studies':
-        return (
-          <CaseStudiesSection 
-            setActiveTab={setActiveTab} 
-            setPrefilledMessage={setPrefilledMessage} 
-          />
-        );
-      case 'insights':
-        return <InsightsSection />;
-      case 'about':
-        return <AboutSection />;
-      case 'contact':
-        return (
-          <ContactSection 
-            prefilledMessage={prefilledMessage} 
-            setPrefilledMessage={setPrefilledMessage} 
-          />
-        );
-      default:
-        return <HomeSection setActiveTab={setActiveTab} />;
-    }
-  };
-
   return (
-    <div className="flex flex-col min-h-screen bg-white font-sans antialiased text-[#111827]">
-      {/* Navigation Header */}
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+    <Router>
+      <div className="flex flex-col min-h-screen bg-[#050505] text-[#e5e5e5] font-sans antialiased selection:bg-[#00d2ff] selection:text-white relative overflow-hidden">
+        {/* Background ambient glow */}
+        <div className="fixed inset-0 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#00e676]/10 blur-[120px] mix-blend-screen animate-blob"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#00b4d8]/10 blur-[120px] mix-blend-screen animate-blob" style={{ animationDelay: '2s' }}></div>
+        </div>
+        
+        {/* Navigation Header */}
+        <Header />
 
-      {/* Main View Area */}
-      <main className="flex-grow">
-        {renderActiveSection()}
-      </main>
+        {/* Main View Area */}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomeSection />} />
+            <Route path="/services" element={<ServicesSection />} />
+            <Route path="/case-studies" element={<CaseStudiesSection setPrefilledMessage={setPrefilledMessage} />} />
+            <Route path="/insights" element={<InsightsSection />} />
+            <Route path="/about" element={<AboutSection />} />
+            <Route path="/contact" element={<ContactSection prefilledMessage={prefilledMessage} setPrefilledMessage={setPrefilledMessage} />} />
+          </Routes>
+        </main>
 
-      {/* Clean Corporate Footer */}
-      <footer className="bg-[#0B1D2D] text-gray-400 border-t border-[#132c42] py-14">
+      {/* Glassmorphic Footer */}
+      <footer className="relative z-10 glass border-x-0 border-b-0 border-t-white/10 mt-auto py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
             {/* Logo and Tagline */}
             <div className="md:col-span-4">
-              <div className="flex items-center space-x-2.5 text-white mb-4">
-                <Shield className="w-5 h-5 text-[#D9A343]" />
-                <span className="font-sans font-bold text-lg tracking-tight">
+              <div className="flex items-center space-x-2.5 mb-4">
+                <Shield className="w-6 h-6 text-[#00e676]" />
+                <span className="font-serif font-bold text-xl tracking-tight text-white">
                   ShieldSpot
                 </span>
               </div>
@@ -91,61 +73,56 @@ export default function App() {
 
             {/* Quick Navigation links */}
             <div className="md:col-span-4 md:col-start-6">
-              <h4 className="font-sans font-bold text-xs tracking-wider uppercase text-gray-300 mb-4 font-mono">
+              <h4 className="font-sans font-bold text-[10px] tracking-widest uppercase text-gray-500 mb-5">
                 PRACTICES
               </h4>
-              <ul className="space-y-2.5 text-[13px] font-light">
-                <li>
-                  <button onClick={() => setActiveTab('home')} className="hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0 text-left">
-                    Home
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => setActiveTab('services')} className="hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0 text-left">
-                    Services
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => setActiveTab('case-studies')} className="hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0 text-left">
-                    Case Study Vault
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => setActiveTab('insights')} className="hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0 text-left">
-                    Insights Stream
-                  </button>
-                </li>
+              <ul className="space-y-3 text-[13px] font-light">
+                {[
+                  { path: '/', label: 'home' },
+                  { path: '/services', label: 'services' },
+                  { path: '/case-studies', label: 'case studies' },
+                  { path: '/insights', label: 'insights' }
+                ].map((tab) => (
+                  <li key={tab.path}>
+                    <Link 
+                      to={tab.path} 
+                      className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 cursor-pointer bg-transparent border-0 p-0 text-left capitalize inline-block"
+                    >
+                      {tab.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Trust and Safety information */}
             <div className="md:col-span-3">
-              <h4 className="font-sans font-bold text-xs tracking-wider uppercase text-gray-300 mb-4 font-mono">
+              <h4 className="font-sans font-bold text-[10px] tracking-widest uppercase text-gray-500 mb-5">
                 SECURITY ASSURANCE
               </h4>
               <p className="font-sans text-xs text-gray-400 leading-relaxed font-light">
                 All customer engagements are governed by standardized bilateral NDA protocols and local air-gapped security container audits.
               </p>
-              <div className="mt-4 inline-flex items-center space-x-1.5 text-[10px] font-bold uppercase tracking-widest text-[#D9A343]">
-                <span>✓ ISO 27001 ALIGNED</span>
+              <div className="mt-5 inline-flex items-center space-x-1.5 text-[10px] font-bold uppercase tracking-widest text-gradient">
+                <Shield className="w-3 h-3 text-[#00e676]" />
+                <span>ISO 27001 ALIGNED</span>
               </div>
             </div>
           </div>
 
           {/* Lower Footer */}
-          <div className="border-t border-[#132c42] mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs font-light text-gray-500">
+          <div className="border-t border-white/5 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs font-light text-gray-500">
             <span>© {new Date().getFullYear()} ShieldSpot, Inc. All rights reserved.</span>
-            <div className="flex space-x-6 mt-4 sm:mt-0 font-mono text-[11px] uppercase tracking-wider">
+            <div className="flex space-x-6 mt-4 sm:mt-0">
               <button 
                 onClick={() => setActiveModal('privacy')} 
-                className="hover:text-gray-300 cursor-pointer bg-transparent border-0 p-0"
+                className="hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0"
               >
                 Privacy Protocols
               </button>
-              <span className="text-[#132c42]">|</span>
               <button 
                 onClick={() => setActiveModal('terms')} 
-                className="hover:text-gray-300 cursor-pointer bg-transparent border-0 p-0"
+                className="hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0"
               >
                 Bilateral NDA Terms
               </button>
@@ -158,30 +135,30 @@ export default function App() {
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 p-2.5 bg-white border border-gray-200 text-gray-700 rounded-none shadow-md hover:bg-gray-50 transition-all cursor-pointer z-40"
+          className="fixed bottom-6 right-6 p-3 glass glass-hover text-white rounded-full shadow-[0_0_15px_rgba(0,230,118,0.3)] z-40 transition-all"
           id="scroll-to-top"
           title="Back to Top"
         >
-          <ArrowUp className="w-4 h-4" />
+          <ArrowUp className="w-5 h-5" />
         </button>
       )}
 
-      {/* Interactive Policy Modals */}
+      {/* Interactive Policy Modals ... (Unchanged) */}
       {activeModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0B1D2D]/60 backdrop-blur-sm animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
           <div 
-            className="bg-white border border-gray-100 max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative animate-in zoom-in-95 duration-200"
+            className="glass rounded-2xl border border-white/20 max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-[0_0_40px_rgba(0,230,118,0.1)] relative animate-in zoom-in-95 duration-300"
             id="policy-modal-container"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-100 px-8 py-5 flex items-center justify-between">
-              <span className="font-sans text-[11px] font-bold tracking-widest text-[#D9A343] uppercase font-mono">
+            <div className="sticky top-0 glass border-b border-white/10 px-8 py-5 flex items-center justify-between z-10">
+              <span className="font-sans text-[11px] font-bold tracking-widest text-gradient uppercase">
                 {activeModal === 'privacy' ? 'SHIELDSPOT PRIVACY PROTOCOLS' : 'BILATERAL NDA GENERAL TERMS'}
               </span>
               <button 
                 onClick={() => setActiveModal(null)}
                 id="close-modal-btn"
-                className="p-1 hover:bg-gray-50 text-gray-400 hover:text-gray-900 transition-colors cursor-pointer border-0 bg-transparent"
+                className="p-1.5 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition-all cursor-pointer border-0 bg-transparent"
                 title="Close dialog"
               >
                 <X className="w-5 h-5" />
@@ -189,28 +166,28 @@ export default function App() {
             </div>
 
             {/* Content */}
-            <div className="p-8 font-sans text-[14px] leading-relaxed text-gray-600 space-y-5 font-light">
+            <div className="p-8 font-sans text-[14px] leading-relaxed text-gray-300 space-y-5 font-light">
               {activeModal === 'privacy' ? (
                 <>
-                  <h3 className="font-serif text-2xl font-normal text-gray-900 leading-snug">
+                  <h3 className="font-serif text-2xl font-medium text-white leading-snug">
                     Strict isolation of industrial telemetry data.
                   </h3>
                   <p>
                     At ShieldSpot, we recognize that raw industrial data, medical records, and facility SCADA logs are highly sensitive assets. We treat your operational history with the same tier of integrity as financial registries.
                   </p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="font-semibold text-white">
                     1. Telemetry Isolation & Security Boundaries
                   </p>
                   <p>
                     All telemetry ingestion models are localized within virtual sandboxes on dedicated servers. No raw metadata is transmitted to public multi-tenant APIs, and no model fine-tuning occurs on proprietary data.
                   </p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="font-semibold text-white">
                     2. Local Air-Gapped Strategy
                   </p>
                   <p>
                     For mining and high-security civil environments, we deploy entirely offline local model architectures running within physical containers on your company's network, ensuring no byte of data ever leaves your intranet.
                   </p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="font-semibold text-white">
                     3. Right to Complete Eradication
                   </p>
                   <p>
@@ -219,25 +196,25 @@ export default function App() {
                 </>
               ) : (
                 <>
-                  <h3 className="font-serif text-2xl font-normal text-gray-900 leading-snug">
+                  <h3 className="font-serif text-2xl font-medium text-white leading-snug">
                     Standardized reciprocal non-disclosure frameworks.
                   </h3>
                   <p>
                     Before exchanging detailed telemetry blueprints, network layouts, or diagnostic history, both parties enter into a binding bilateral non-disclosure agreement.
                   </p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="font-semibold text-white">
                     1. Definition of Confidential Material
                   </p>
                   <p>
                     Confidential information comprises all sensor logs, historian telemetry, custom workflow layouts, model thresholds, and engineering benchmarks provided during briefings.
                   </p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="font-semibold text-white">
                     2. Protection and Permitted Usage
                   </p>
                   <p>
                     ShieldSpot will utilize provided datasets strictly to execute high-stakes risk audits. No metadata, code adapters, or system summaries will be shared with outside providers.
                   </p>
-                  <p className="font-semibold text-gray-900">
+                  <p className="font-semibold text-white">
                     3. NDA Inquiries & Execution
                   </p>
                   <p>
@@ -248,11 +225,11 @@ export default function App() {
             </div>
 
             {/* Footer */}
-            <div className="border-t border-gray-100 px-8 py-5 bg-gray-50 flex justify-end">
+            <div className="border-t border-white/10 px-8 py-5 bg-white/5 flex justify-end">
               <button
                 onClick={() => setActiveModal(null)}
                 id="modal-ack-btn"
-                className="bg-[#0B1D2D] hover:bg-[#152e44] text-white font-sans font-semibold text-xs tracking-wider uppercase px-5 py-2.5 rounded transition-all cursor-pointer border-0"
+                className="bg-gradient-accent hover:opacity-90 text-white font-sans font-bold text-xs tracking-wide px-6 py-2.5 rounded-full shadow-[0_0_15px_rgba(0,230,118,0.4)] transition-all cursor-pointer border-0"
               >
                 Acknowledge and Close
               </button>
@@ -261,7 +238,7 @@ export default function App() {
         </div>
       )}
 
-
-    </div>
+      </div>
+    </Router>
   );
 }

@@ -65,47 +65,60 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
   ];
 
   return (
-    <div className="bg-[#FAFBFD] min-h-screen">
+    <div className="bg-transparent min-h-screen relative">
       {/* Dark Navy Hero Section */}
-      <section className="bg-[#0B1D2D] text-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <span className="text-[11px] font-bold tracking-[0.2em] text-[#D9A343] uppercase block mb-3 font-mono">
-            ENGAGEMENTS & INQUIRIES
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.15] tracking-tight max-w-4xl text-gray-50">
-            Initiate a telemetry alignment briefing.
-          </h1>
-          <p className="font-sans text-gray-300 text-sm md:text-base mt-4 max-w-2xl font-light">
-            We conduct customized operational briefings under strict NDA to evaluate your telemetry compatibility.
-          </p>
+      <section className="relative overflow-hidden py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00e676]/10 to-transparent pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block py-1 px-3 rounded-full glass border border-[#00e676]/30 text-[10px] font-bold tracking-[0.2em] text-[#00e676] uppercase mb-4 font-sans">
+              ENGAGEMENTS & INQUIRIES
+            </span>
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold leading-[1.1] tracking-tight max-w-4xl text-white">
+              Initiate a telemetry <span className="text-gradient">alignment briefing</span>.
+            </h1>
+            <p className="font-sans text-gray-400 text-base md:text-lg mt-6 max-w-2xl font-light leading-relaxed">
+              We conduct customized operational briefings under strict NDA to evaluate your telemetry compatibility.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Grid containing Details and Form */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           
           {/* Details / Left Column */}
-          <div className="lg:col-span-5">
-            <h2 className="font-serif text-2xl text-gray-900 font-normal tracking-tight mb-6">
-              Establish a secure line of inquiry.
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5"
+          >
+            <h2 className="font-serif text-3xl text-white font-medium tracking-tight mb-6 leading-snug">
+              Establish a <span className="text-gradient drop-shadow-sm">secure line</span> of inquiry.
             </h2>
-            <p className="font-sans text-gray-500 text-sm leading-relaxed font-light mb-8">
+            <p className="font-sans text-gray-400 text-[15px] leading-relaxed font-light mb-10">
               We respond to qualified inquiries from COOs, safety directors, and technical operations leaders. All introductory consultations are backed by standard mutual non-disclosure frameworks.
             </p>
 
             {/* Email contact */}
-            <div className="flex items-center space-x-3.5 mb-10 border-b border-gray-100 pb-8">
-              <div className="w-10 h-10 bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0">
-                <Mail className="w-5 h-5 text-[#D9A343]" />
+            <div className="flex items-center space-x-5 mb-12 border-b border-white/10 pb-10">
+              <div className="w-12 h-12 glass rounded-full border border-white/10 flex items-center justify-center shrink-0 shadow-inner hover:scale-110 transition-transform">
+                <Mail className="w-5 h-5 text-[#00e676]" />
               </div>
               <div>
-                <span className="block font-sans text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                <span className="block font-sans text-[10px] text-[#00b4d8] font-bold uppercase tracking-[0.15em] mb-1">
                   SECURE OFFICE INBOX
                 </span>
                 <a 
                   href="mailto:briefings@shieldspot.com" 
-                  className="font-sans text-sm font-semibold text-gray-900 hover:text-[#D9A343] transition-colors"
+                  className="font-sans text-base font-semibold text-white hover:text-[#00e676] transition-colors"
                 >
                   briefings@shieldspot.com
                 </a>
@@ -114,20 +127,20 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
 
             {/* Hub Locations */}
             <div>
-              <span className="block font-sans text-xs text-gray-400 font-bold uppercase tracking-wider mb-6">
+              <span className="block font-sans text-[11px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-8">
                 OPERATIONAL HUBS
               </span>
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {locations.map((loc, idx) => (
-                  <div key={idx} className="flex space-x-3.5">
-                    <div className="text-gray-400 mt-0.5 shrink-0">
-                      <MapPin className="w-4 h-4" />
+                  <div key={idx} className="flex space-x-4 group">
+                    <div className="w-8 h-8 glass rounded-full flex items-center justify-center shrink-0 shadow-inner group-hover:scale-110 transition-transform">
+                      <MapPin className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#00b4d8] transition-colors" />
                     </div>
                     <div>
-                      <h4 className="font-sans font-bold text-xs text-gray-900 leading-tight">
-                        {loc.city} <span className="text-gray-400 font-medium font-mono text-[10px] ml-1">/ {loc.region}</span>
+                      <h4 className="font-sans font-bold text-[13px] text-white leading-tight">
+                        {loc.city} <span className="text-[#00b4d8] font-medium font-sans text-[11px] ml-1.5 uppercase tracking-widest">/ {loc.region}</span>
                       </h4>
-                      <p className="font-sans text-xs text-gray-500 font-light mt-1">
+                      <p className="font-sans text-[13px] text-gray-400 font-light mt-1.5">
                         {loc.address}
                       </p>
                     </div>
@@ -135,33 +148,40 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Form / Right Column */}
-          <div className="lg:col-span-7">
-            <div className="bg-white border border-gray-100 p-8 md:p-10 shadow-sm relative min-h-[450px] flex flex-col justify-center">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-7"
+          >
+            <div className="glass rounded-3xl p-8 md:p-12 shadow-[0_15px_40px_rgba(0,230,118,0.05)] border-t border-white/20 relative min-h-[450px] flex flex-col justify-center">
               
               {!isSubmitted ? (
-                <form onSubmit={handleSubmit} className="space-y-6" id="briefing-form">
-                  <div className="border-b border-gray-100 pb-5 mb-5 flex items-center justify-between">
-                    <span className="font-sans text-[11px] font-bold tracking-widest text-[#D9A343] uppercase font-mono">
+                <form onSubmit={handleSubmit} className="space-y-7" id="briefing-form">
+                  <div className="border-b border-white/10 pb-6 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <span className="font-sans text-[11px] font-bold tracking-[0.2em] text-[#00e676] uppercase">
                       BRIEFING RESERVATION
                     </span>
-                    <span className="text-gray-400 font-mono text-[10px] uppercase font-bold tracking-wider">
-                      ★ NDA PROTECTED
+                    <span className="inline-flex items-center space-x-1.5 py-1 px-3 rounded-full glass border border-amber-500/30 text-amber-500 font-sans text-[10px] uppercase font-bold tracking-widest shadow-inner">
+                      <span>★</span>
+                      <span>NDA PROTECTED</span>
                     </span>
                   </div>
 
                   {error && (
-                    <div className="bg-red-50 border border-red-100 text-red-700 text-xs px-4 py-3 rounded-none font-sans font-medium">
+                    <div className="bg-red-950/30 border border-red-500/50 text-red-300 text-[13px] px-5 py-4 rounded-xl font-sans font-medium flex items-center shadow-inner">
                       {error}
                     </div>
                   )}
 
                   {/* Row 1: Name and Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                     <div>
-                      <label htmlFor="form-name" className="block text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">
+                      <label htmlFor="form-name" className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-2.5">
                         Your Name *
                       </label>
                       <input
@@ -170,12 +190,12 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-[#FAFBFD] border border-gray-200 focus:border-[#D9A343] px-4 py-2.5 text-sm outline-none transition-colors rounded-none font-sans"
+                        className="w-full bg-white/5 border border-white/10 focus:border-[#00e676] focus:bg-white/10 px-5 py-3 text-[14px] text-white outline-none transition-all rounded-xl font-sans shadow-inner placeholder:text-gray-600"
                         placeholder="e.g. Arthur Vance"
                       />
                     </div>
                     <div>
-                      <label htmlFor="form-email" className="block text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">
+                      <label htmlFor="form-email" className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-2.5">
                         Work Email *
                       </label>
                       <input
@@ -184,16 +204,16 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-[#FAFBFD] border border-gray-200 focus:border-[#D9A343] px-4 py-2.5 text-sm outline-none transition-colors rounded-none font-sans"
+                        className="w-full bg-white/5 border border-white/10 focus:border-[#00e676] focus:bg-white/10 px-5 py-3 text-[14px] text-white outline-none transition-all rounded-xl font-sans shadow-inner placeholder:text-gray-600"
                         placeholder="vance@company.com"
                       />
                     </div>
                   </div>
 
                   {/* Row 2: Company and Sector */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                     <div>
-                      <label htmlFor="form-company" className="block text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">
+                      <label htmlFor="form-company" className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-2.5">
                         Company / Enterprise *
                       </label>
                       <input
@@ -202,31 +222,31 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
                         required
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full bg-[#FAFBFD] border border-gray-200 focus:border-[#D9A343] px-4 py-2.5 text-sm outline-none transition-colors rounded-none font-sans"
+                        className="w-full bg-white/5 border border-white/10 focus:border-[#00e676] focus:bg-white/10 px-5 py-3 text-[14px] text-white outline-none transition-all rounded-xl font-sans shadow-inner placeholder:text-gray-600"
                         placeholder="e.g. Rio Tinto"
                       />
                     </div>
                     <div>
-                      <label htmlFor="form-sector" className="block text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">
+                      <label htmlFor="form-sector" className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-2.5">
                         Primary Sector
                       </label>
                       <select
                         id="form-sector"
                         value={formData.sector}
                         onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
-                        className="w-full bg-[#FAFBFD] border border-gray-200 focus:border-[#D9A343] px-4 py-2.5 text-sm outline-none transition-colors rounded-none font-sans text-gray-700"
+                        className="w-full bg-white/5 border border-white/10 focus:border-[#00e676] focus:bg-white/10 px-5 py-3 text-[14px] text-white outline-none transition-all rounded-xl font-sans shadow-inner appearance-none"
                       >
-                        <option value="Heavy Industry">Heavy Industry</option>
-                        <option value="Mining">Mining</option>
-                        <option value="Healthcare">Healthcare</option>
-                        <option value="Government / Other">Government / Other</option>
+                        <option value="Heavy Industry" className="bg-gray-900">Heavy Industry</option>
+                        <option value="Mining" className="bg-gray-900">Mining</option>
+                        <option value="Healthcare" className="bg-gray-900">Healthcare</option>
+                        <option value="Government / Other" className="bg-gray-900">Government / Other</option>
                       </select>
                     </div>
                   </div>
 
                   {/* Textarea: Briefing Focus */}
                   <div>
-                    <label htmlFor="form-message" className="block text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">
+                    <label htmlFor="form-message" className="block text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-2.5">
                       Briefing Focus / Telemetry Backbones *
                     </label>
                     <textarea
@@ -235,37 +255,37 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-[#FAFBFD] border border-gray-200 focus:border-[#D9A343] px-4 py-2.5 text-sm outline-none transition-colors rounded-none font-sans leading-relaxed"
+                      className="w-full bg-white/5 border border-white/10 focus:border-[#00e676] focus:bg-white/10 px-5 py-4 text-[14px] text-white outline-none transition-all rounded-xl font-sans leading-relaxed shadow-inner placeholder:text-gray-600 resize-none"
                       placeholder="Outline any legacy database architectures (e.g. SCADA historian, clinical EHR) and predictive targets."
                     />
                   </div>
 
                   {/* Require NDA Checkbox */}
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
+                  <div className="flex items-start bg-white/5 p-4 rounded-xl border border-white/10">
+                    <div className="flex items-center h-5 mt-0.5">
                       <input
                         type="checkbox"
                         id="form-nda"
                         checked={formData.requireNDA}
                         onChange={(e) => setFormData({ ...formData, requireNDA: e.target.checked })}
-                        className="w-4 h-4 text-[#D9A343] bg-gray-50 border-gray-200 rounded-none focus:ring-amber-500 cursor-pointer"
+                        className="w-4 h-4 text-[#00e676] bg-black border-white/20 rounded focus:ring-[#00e676] focus:ring-offset-gray-900 cursor-pointer"
                       />
                     </div>
-                    <div className="ml-3 text-xs leading-none">
-                      <label htmlFor="form-nda" className="font-sans text-gray-500 cursor-pointer font-light select-none">
+                    <div className="ml-4 text-[13px] leading-relaxed">
+                      <label htmlFor="form-nda" className="font-sans text-gray-300 cursor-pointer font-light select-none">
                         Require a signed unilateral NDA before presenting specific telemetry layouts
                       </label>
                     </div>
                   </div>
 
                   {/* Submit Button */}
-                  <div className="pt-2">
+                  <div className="pt-4">
                     <button
                       type="submit"
                       id="form-submit-btn"
-                      className="w-full bg-[#0B1D2D] hover:bg-[#152e44] text-white font-sans font-semibold text-[13px] tracking-widest uppercase py-3.5 rounded shadow-sm hover:shadow transition-all duration-200 cursor-pointer flex items-center justify-center space-x-2"
+                      className="w-full bg-gradient-accent text-white font-sans font-semibold text-[13px] tracking-[0.2em] uppercase py-4 rounded-xl shadow-[0_0_20px_rgba(0,230,118,0.3)] hover:shadow-[0_0_30px_rgba(0,230,118,0.5)] hover:scale-[1.02] transition-all duration-300 cursor-pointer flex items-center justify-center space-x-3"
                     >
-                      <ShieldCheck className="w-4 h-4 text-[#D9A343]" />
+                      <ShieldCheck className="w-5 h-5 text-white drop-shadow-md" />
                       <span>Request Briefing Slot</span>
                     </button>
                   </div>
@@ -274,30 +294,30 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-center py-8"
+                  transition={{ duration: 0.4 }}
+                  className="text-center py-10"
                   id="form-success-alert"
                 >
-                  <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="w-8 h-8 stroke-[1.5]" />
+                  <div className="w-20 h-20 glass rounded-full border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                    <CheckCircle className="w-10 h-10 stroke-[1.5]" />
                   </div>
                   
-                  <span className="inline-block font-sans text-[11px] font-bold tracking-widest text-[#D9A343] uppercase mb-2 font-mono">
+                  <span className="inline-block font-sans text-[11px] font-bold tracking-[0.2em] text-[#00e676] uppercase mb-4">
                     TRANSMISSION SUCCESSFUL
                   </span>
                   
-                  <h3 className="font-serif text-2xl text-gray-900 font-normal tracking-tight mb-4">
+                  <h3 className="font-serif text-3xl text-white font-medium tracking-tight mb-5">
                     Inquiry registered securely.
                   </h3>
                   
-                  <p className="font-sans text-gray-500 text-sm leading-relaxed font-light max-w-md mx-auto mb-8">
-                    An operational representative from our {formData.sector} group will review your request. We will transmit an introductory NDA package to <strong className="text-gray-900">{formData.email}</strong> within 12 hours.
+                  <p className="font-sans text-gray-400 text-[15px] leading-relaxed font-light max-w-md mx-auto mb-10">
+                    An operational representative from our {formData.sector} group will review your request. We will transmit an introductory NDA package to <strong className="text-white font-medium">{formData.email}</strong> within 12 hours.
                   </p>
 
-                  <div className="flex justify-center space-x-4">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
                     {formData.requireNDA && (
-                      <div className="inline-flex items-center space-x-1.5 bg-amber-50 border border-amber-100 text-amber-800 text-[11px] font-medium font-sans px-3.5 py-2">
-                        <FileText className="w-3.5 h-3.5 text-[#D9A343]" />
+                      <div className="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[12px] font-medium font-sans px-4 py-2.5 rounded-full shadow-inner">
+                        <FileText className="w-4 h-4" />
                         <span>NDA Drafting Pending</span>
                       </div>
                     )}
@@ -305,7 +325,7 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
                     <button
                       onClick={handleReset}
                       id="reset-form-btn"
-                      className="inline-flex items-center justify-center text-xs font-bold text-gray-500 hover:text-gray-900 underline tracking-wider uppercase font-mono bg-transparent border-0 cursor-pointer"
+                      className="inline-flex items-center justify-center text-[12px] font-bold text-gray-400 hover:text-white transition-colors tracking-[0.15em] uppercase font-sans bg-white/5 border border-white/10 hover:bg-white/10 px-6 py-2.5 rounded-full cursor-pointer"
                     >
                       New Transmission
                     </button>
@@ -313,7 +333,7 @@ export default function ContactSection({ prefilledMessage = '', setPrefilledMess
                 </motion.div>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

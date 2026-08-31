@@ -3,31 +3,31 @@ import { CaseStudy, Insight } from './types';
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'case-1',
-    sector: 'HEAVY INDUSTRY',
-    region: 'APAC',
-    title: 'Contractor Risk Platform for Heavy Civil Operations',
-    subtitle: 'Unified contractor onboarding, permit-to-work and incident telemetry into a single risk surface for executive oversight.',
+    sector: 'MINING & EXCAVATION',
+    region: 'Jharkhand, India',
+    title: 'Geotechnical Edge Monitoring for Open-Cast Mines',
+    subtitle: 'Deployed an offline, edge-computed predictive model integrating seismic activity and subsurface integrity to forecast wall collapses with 98% accuracy 72 hours in advance.',
     bullets: [
-      'Single source of safety truth',
-      '60% faster permit issuance',
-      'Board-grade risk reporting'
+      'Zero-latency edge processing in low-connectivity zones',
+      'Integration of complex geotechnical sensor arrays',
+      'Saved estimated $4M in halted operations and equipment loss'
     ]
   },
   {
     id: 'case-2',
-    sector: 'HEAVY INDUSTRY',
-    region: 'North America',
-    title: 'Energy & Yield Optimization at a Continuous Smelter',
-    subtitle: 'Built a closed-loop optimization model on plant historian data, balancing yield, emissions and energy intensity.',
-    imageUrl: 'https://picsum.photos/seed/smelter/800/600'
+    sector: 'PETROCHEMICALS',
+    region: 'Gujarat, India',
+    title: 'Preemptive Toxic Gas & Fault Detection',
+    subtitle: 'Replaced reactive dashboards with an XAI-driven system monitoring extreme thermal gradients and pressure profiles to predict column flooding and volatile gas accumulations.',
+    imageUrl: 'https://picsum.photos/seed/petrochemical/800/600'
   },
   {
     id: 'case-3',
-    sector: 'HEALTHCARE',
-    region: 'EMEA',
-    title: 'Clinical Workflow Orchestration for a Regional Health Network',
-    subtitle: 'Re-engineered triage and bed-allocation workflows with an enterprise AI layer over existing EHR systems.',
-    imageUrl: 'https://picsum.photos/seed/clinical_tablet/800/600'
+    sector: 'CONSTRUCTION',
+    region: 'Karnataka, India',
+    title: 'BIM-Integrated Structural Load Monitoring',
+    subtitle: 'Averted high-rise structural failures by correlating real-time sensor-based load data with Building Information Modeling (BIM) to detect degradation early.',
+    imageUrl: 'https://picsum.photos/seed/construction_site/800/600'
   }
 ];
 
@@ -35,11 +35,11 @@ export const INSIGHTS: Insight[] = [
   {
     id: 'insight-1',
     author: {
-      name: 'ShieldSpot Research',
-      role: 'Industrial AI Consulting',
-      avatarInitials: 'SS'
+      name: 'Dr. Arthur Vance',
+      role: 'Chief Scientific Officer',
+      avatarInitials: 'AV'
     },
-    text: 'Most safety dashboards report lagging indicators. The frontier is anticipating incidents 48–72 hours out with operational telemetry. Here is what we are seeing across mining and heavy industry.',
+    text: 'A major barrier in OHS is the "data vacuum." Over 80% of urban workforces operate in fragmented ecosystems where safety audits are manual checklists. Mobile-first IoT integration is not a luxury; it is the only way to build a reliable predictive baseline.',
     date: '11/18/2025',
     likes: 312,
     comments: 27,
@@ -48,24 +48,24 @@ export const INSIGHTS: Insight[] = [
   {
     id: 'insight-2',
     author: {
-      name: 'ShieldSpot Research',
-      role: 'Industrial AI Consulting',
-      avatarInitials: 'SS'
+      name: 'Marcus Thorne',
+      role: 'Head of Engineering',
+      avatarInitials: 'MT'
     },
-    text: 'Healthcare operations teams are quietly running the most complex AI rollouts in the enterprise. Three patterns we keep recommending to COOs navigating GDPR & PIPEDA.',
+    text: 'We cannot expect safety officers to trust black-box models. Explainable AI (XAI) using SHAP values is critical. When we predict a machinery failure, the dashboard must explicitly state whether the risk is driven by vibration, temperature, or wear-and-tear.',
     date: '11/4/2025',
     likes: 198,
     comments: 19,
-    imageUrl: 'https://picsum.photos/seed/healthcare_team/800/600'
+    imageUrl: 'https://picsum.photos/seed/edge_computing/800/600'
   },
   {
     id: 'insight-3',
     author: {
-      name: 'ShieldSpot Research',
-      role: 'Industrial AI Consulting',
-      avatarInitials: 'SS'
+      name: 'Sarah Lin, P.Eng.',
+      role: 'Managing Partner',
+      avatarInitials: 'SL'
     },
-    text: 'Field note: the best Enterprise AI Workflow programs do not start with a model. They start with a clearly-owned operational decision and a measurable counterfactual.',
+    text: 'In remote regions with intermittent power, cloud reliance is a fatal flaw. Edge computing devices that process sensor data locally ensure that anomaly detection never sleeps, regardless of external network stability.',
     date: '10/21/2025',
     likes: 421,
     comments: 44

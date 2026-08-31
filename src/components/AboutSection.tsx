@@ -1,4 +1,5 @@
 import { Shield, Hammer, Users } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function AboutSection() {
   const leadership = [
@@ -24,114 +25,146 @@ export default function AboutSection() {
 
   const values = [
     {
-      icon: <Shield className="w-5 h-5 text-[#D9A343]" />,
+      icon: <Shield className="w-5 h-5 text-[#00e676]" />,
       title: 'Safety Determinism',
       description: 'We believe models should operate within strict physical limits. We write hard compliance checks that override models in risky operational states.'
     },
     {
-      icon: <Hammer className="w-5 h-5 text-[#D9A343]" />,
+      icon: <Hammer className="w-5 h-5 text-[#00e676]" />,
       title: 'Empirical baselines',
       description: 'We never deploy general chatbots or unanchored models. Every workflow is benchmarked against rigorous historical telemetry streams.'
     },
     {
-      icon: <Users className="w-5 h-5 text-[#D9A343]" />,
+      icon: <Users className="w-5 h-5 text-[#00e676]" />,
       title: 'Frictionless Integration',
       description: 'Our agents sit transparently on top of your existing historical records systems. No massive overhauls or expensive tooling migrations required.'
     }
   ];
 
   return (
-    <div className="bg-[#FAFBFD] min-h-screen">
+    <div className="bg-transparent min-h-screen relative">
       {/* Dark Navy Hero Section */}
-      <section className="bg-[#0B1D2D] text-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <span className="text-[11px] font-bold tracking-[0.2em] text-[#D9A343] uppercase block mb-3 font-mono">
-            COMPANY DETAILS
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.15] tracking-tight max-w-4xl text-gray-50">
-            Engineered by operators. Trusted by industry leaders.
-          </h1>
-          <p className="font-sans text-gray-300 text-sm md:text-base mt-4 max-w-2xl font-light">
-            Founded in 2022, ShieldSpot translates cutting-edge predictive intelligence into safe, robust, and field-tested physical workflows.
-          </p>
+      <section className="relative overflow-hidden py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00b4d8]/10 to-transparent pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block py-1 px-3 rounded-full glass border border-[#00b4d8]/30 text-[10px] font-bold tracking-[0.2em] text-[#00b4d8] uppercase mb-4 font-sans">
+              COMPANY DETAILS
+            </span>
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold leading-[1.1] tracking-tight max-w-4xl text-white">
+              Engineered by operators. Trusted by <span className="text-gradient">industry leaders</span>.
+            </h1>
+            <p className="font-sans text-gray-400 text-base md:text-lg mt-6 max-w-2xl font-light leading-relaxed">
+              Founded in 2022, ShieldSpot translates cutting-edge predictive intelligence into safe, robust, and field-tested physical workflows.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Narrative Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="font-serif text-2xl md:text-3xl text-gray-900 font-normal tracking-tight mb-6">
-              Our core mission: Shifting physical operations from lagging dashboards to pre-emptive foresight.
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="font-serif text-3xl md:text-4xl text-white font-medium tracking-tight mb-8 leading-snug">
+              Our core mission: Shifting physical operations from lagging dashboards to <span className="text-gradient drop-shadow-md">pre-emptive foresight</span>.
             </h2>
-            <div className="space-y-4 font-sans text-gray-600 text-[14px] leading-relaxed font-light">
+            <div className="space-y-6 font-sans text-gray-400 text-[15px] leading-relaxed font-light">
               <p>
-                In high-stakes industrial, mining, and healthcare environments, standard data dashboards are fundamentally flawed: they report lagging indicators. By the time a metric breaches safety limits, the incident has already occurred.
+                In high-stakes industrial and mining environments across emerging economies, organizations face a critical "data vacuum." Relying on manual checklists and reactive dashboards is fundamentally flawed: by the time a metric breaches safety limits, the incident has already occurred.
               </p>
               <p>
-                At ShieldSpot, we bridge the gap between cutting-edge AI models and high-frequency real-world telemetry. We package predictive reasoning into discrete, reliable, and compliant workflow agents designed strictly for heavy operations.
+                At ShieldSpot, we bridge the gap between fragmented data ecosystems and high-frequency real-world telemetry. We package predictive reasoning—powered by Edge Computing and Explainable AI (XAI)—into discrete, reliable workflow agents designed strictly for heavy operations.
               </p>
               <p>
                 We operate under strict confidentiality protocols, protecting proprietary operational history under robust NDA frameworks.
               </p>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="bg-white border border-gray-100 p-8 shadow-sm">
-            <span className="block font-sans text-[11px] font-bold tracking-widest text-[#D9A343] uppercase mb-6 font-mono">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="glass rounded-3xl p-10 border-t border-white/20 shadow-[0_15px_40px_rgba(0,230,118,0.05)]"
+          >
+            <span className="block font-sans text-[11px] font-bold tracking-widest text-[#00b4d8] uppercase mb-8">
               THE SHIELDSPOT PARADIGM
             </span>
-            <div className="space-y-6">
+            <div className="space-y-8">
               {values.map((val, idx) => (
-                <div key={idx} className="flex space-x-4">
-                  <div className="w-10 h-10 bg-amber-50 flex items-center justify-center border border-amber-100 shrink-0">
+                <div key={idx} className="flex space-x-5 group">
+                  <div className="w-12 h-12 glass rounded-xl flex items-center justify-center shrink-0 shadow-inner group-hover:scale-110 transition-transform">
                     {val.icon}
                   </div>
                   <div>
-                    <h4 className="font-serif text-base text-gray-900 font-normal">
+                    <h4 className="font-serif text-xl text-white font-semibold">
                       {val.title}
                     </h4>
-                    <p className="font-sans text-gray-500 text-xs leading-relaxed font-light mt-1">
+                    <p className="font-sans text-gray-400 text-[13px] leading-relaxed font-light mt-2">
                       {val.description}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Leadership Section */}
-      <section className="border-t border-gray-100 bg-white py-16 md:py-20">
+      <section className="border-t border-white/10 glass bg-black/20 py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <span className="text-[11px] font-bold tracking-[0.2em] text-[#D9A343] uppercase block mb-3 font-mono">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mb-16"
+          >
+            <span className="inline-block py-1 px-3 rounded-full glass border border-[#00b4d8]/30 text-[10px] font-bold tracking-[0.2em] text-[#00b4d8] uppercase mb-4 font-sans">
               SENIOR TEAM
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-normal tracking-tight text-[#111827]">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold tracking-tight text-white">
               Field-tested advisors guiding your AI strategy.
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {leadership.map((leader, idx) => (
-              <div key={idx} className="bg-[#FAFBFD] border border-gray-100 p-8 shadow-sm flex flex-col justify-between" id={`leader-${idx}`}>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                key={idx} 
+                className="glass rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:bg-white/10 transition-colors border-t border-white/20" 
+                id={`leader-${idx}`}
+              >
                 <div>
-                  <div className="w-12 h-12 bg-[#0B1D2D] text-white flex items-center justify-center font-bold text-sm tracking-widest font-mono mb-6">
+                  <div className="w-14 h-14 glass rounded-full flex items-center justify-center font-bold text-[15px] tracking-widest font-sans mb-6 text-[#00e676] border border-[#00e676]/30 shadow-inner">
                     {leader.initials}
                   </div>
-                  <h3 className="font-sans font-bold text-base text-gray-900 leading-tight">
+                  <h3 className="font-sans font-bold text-lg text-white leading-tight">
                     {leader.name}
                   </h3>
-                  <p className="font-sans text-[11px] text-[#D9A343] font-bold uppercase tracking-wider mt-1 mb-4">
+                  <p className="font-sans text-[11px] text-[#00b4d8] font-bold uppercase tracking-widest mt-2 mb-5">
                     {leader.role}
                   </p>
-                  <p className="font-sans text-gray-500 text-xs md:text-[13px] leading-relaxed font-light">
+                  <p className="font-sans text-gray-400 text-[14px] leading-relaxed font-light">
                     {leader.bio}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

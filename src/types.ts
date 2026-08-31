@@ -1,5 +1,3 @@
-export type Tab = 'home' | 'services' | 'case-studies' | 'insights' | 'about' | 'contact';
-
 export type Sector = 'ALL' | 'MINING' | 'HEALTHCARE' | 'HEAVY INDUSTRY';
 
 export interface CaseStudy {
